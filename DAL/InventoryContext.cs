@@ -16,11 +16,6 @@ namespace EposInventory.DAL
 
         public DbSet<Item> Items { get; set; }
         public DbSet<Provider> Providers { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-
-        }
         
     }
 }
