@@ -21,7 +21,7 @@ namespace EposInventory.Models
         public int Stock { get; set; }
         [Display(Name = "Warning Level")]
         public int WarningLevel { get; set; }
-
+        int markup = 1;
         [Display(Name = "Markup")]
         public int Markup
         {
@@ -33,7 +33,7 @@ namespace EposInventory.Models
             }
             set
             {
-                Markup = 1;
+                this.markup = Markup;
             }
         }
 
