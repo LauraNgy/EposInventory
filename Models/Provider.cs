@@ -17,7 +17,6 @@ namespace EposInventory.Models
     {
 
         public int ID { get; set; }
-        [Display(Name = "Name")]
         public string ProviderName { get; set; }
         public string Address { get; set; }
         [DataType(DataType.PhoneNumber)]
