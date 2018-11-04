@@ -26,6 +26,8 @@ namespace EposInventory.Controllers
                                                 select new LowestStockGroup()
                                                 {
                                                     Description = item.Description,
+                                                    ProviderName = item.Provider.ProviderName,
+                                                    ProviderPhone = item.Provider.PhoneNumber,
                                                     Stock = item.Stock
                                                 };
             return View(data.ToList());
