@@ -7,15 +7,15 @@ using EposInventory.Models;
 
 namespace EposInventory.DAL
 {
-    public class InventoryInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<InventoryContext>
+    public class InventoryInitializer : System.Data.Entity.DropCreateDatabaseAlways<InventoryContext>
     {
         protected override void Seed(InventoryContext context)
         {
             var providers = new List<Provider>
             {
-                new Provider { ProviderName="Bertie Bott's", Address="3 Diagon Alley, Leaky Cauldron, London", PhoneNumber="0131 2478632", OrderDays={ Day.Mon, Day.Wed }, DeliveryDays= {Day.Tue, Day.Thu} },
-                new Provider { ProviderName="Florian Fortescue", Address="5 Diagon Alley, Leaky Cauldron, London", PhoneNumber="0131 3567526", OrderDays={ Day.Wed, Day.Fri }, DeliveryDays= {Day.Mon, Day.Thu} },
-                new Provider { ProviderName="Ollivander's", Address="14 Diagon Alley, Leaky Cauldron, London", PhoneNumber="0131 6555826", OrderDays={ Day.Wed, Day.Sat }, DeliveryDays= {Day.Mon, Day.Fri} }
+                new Provider { ProviderName="Bertie Bott's", Address="3 Diagon Alley, Leaky Cauldron, London", PhoneNumber="0131 2478632", OrderDays="Monday, Wednesday", DeliveryDays= "Wednesday, Thursday" },
+                new Provider { ProviderName="Florian Fortescue", Address="5 Diagon Alley, Leaky Cauldron, London", PhoneNumber="0131 3567526", OrderDays="Friday, Wednesday", DeliveryDays= "Monday, Thursday" },
+                new Provider { ProviderName="Ollivander's", Address="14 Diagon Alley, Leaky Cauldron, London", PhoneNumber="0131 6555826", OrderDays="Thursday, Saturday", DeliveryDays="Friday, Monday" }
             };
 
             providers.ForEach(provider => context.Providers.Add(provider));

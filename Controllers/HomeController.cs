@@ -20,7 +20,7 @@ namespace EposInventory.Controllers
 
         public ActionResult Index()
         {
-            IQueryable<LowestStockGroup> data = from item in db.Items
+            IQueryable<LowestStockGroup> itemData = from item in db.Items
                                                 where (item.Stock <= item.WarningLevel)
                                                 orderby item.Stock ascending
                                                 select new LowestStockGroup()
@@ -30,7 +30,7 @@ namespace EposInventory.Controllers
                                                     ProviderPhone = item.Provider.PhoneNumber,
                                                     Stock = item.Stock
                                                 };
-            return View(data.ToList());
+            return View(itemData.ToList());
         }
 
         public ActionResult About()

@@ -8,11 +8,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EposInventory.Models
 {
 
-    public enum Day
-    {
-        Mon, Tue, Wed, Thu, Fri, Sat, Sun
-    }
-
     public class Provider
     {
 
@@ -23,16 +18,14 @@ namespace EposInventory.Models
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
         [Display(Name = "Ordering Days")]
-        public ICollection<Day> OrderDays { get; set; }
+        public string OrderDays { get; set; }
         [Display(Name = "Delivery Days")]
-        public ICollection<Day> DeliveryDays { get; set; }
+        public string DeliveryDays { get; set; }
 
         public virtual ICollection<Item> Items { get; set; }
 
         public Provider()
         {
-            OrderDays = new List<Day>();
-            DeliveryDays = new List<Day>();
             Items = new List<Item>();
         }
     }

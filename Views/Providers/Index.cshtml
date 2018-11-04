@@ -30,6 +30,14 @@
             @Html.ActionLink("Phone Number", "Index", new { sortOrder = ViewBag.PhoneNumberSortParm })
         </th>
 
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDays)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryDays)
+        </th>
+
         <th></th>
     </tr>
 
@@ -43,6 +51,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDays)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryDays)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
