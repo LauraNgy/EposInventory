@@ -21,15 +21,16 @@ namespace EposInventory.Controllers
         public ActionResult Index()
         {
             IQueryable<LowestStockGroup> itemData = from item in db.Items
-                                                where (item.Stock <= item.WarningLevel)
-                                                orderby item.Stock ascending
-                                                select new LowestStockGroup()
-                                                {
-                                                    Description = item.Description,
-                                                    ProviderName = item.Provider.ProviderName,
-                                                    ProviderPhone = item.Provider.PhoneNumber,
-                                                    Stock = item.Stock
-                                                };
+                                                    where (item.Stock <= item.WarningLevel)
+                                                    orderby item.Stock ascending
+                                                    select new LowestStockGroup()
+                                                    {
+                                                        Description = item.Description,
+                                                        ProviderName = item.Provider.ProviderName,
+                                                        ProviderPhone = item.Provider.PhoneNumber,
+                                                        Stock = item.Stock
+                                                    };
+
             return View(itemData.ToList());
         }
 

@@ -1,5 +1,20 @@
-﻿@{
+﻿@using EposInventory.DAL;
+@using EposInventory.ViewModels;
+
+@{
     ViewBag.Title = "Home Page";
+}
+
+@{
+    InventoryContext db = new InventoryContext();
+    IQueryable<OrderGroup>
+    providerData = from provider in db.Providers
+                   where (provider.OrderDays.Contains(DateTime.Today.DayOfWeek.ToString()))
+                   select new OrderGroup()
+                   {
+                       Name = provider.ProviderName,
+                       PhoneNumber = provider.PhoneNumber
+                   };
 }
 
 <div class="jumbotron">
@@ -53,6 +68,29 @@
         </table>
     </div>
     <div class="col-md-4">
-        <p>placeholder for who to order from today</p>
+        <h2>Providers you can order from today</h2>
+
+        <table>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Phone Number
+                </th>
+            </tr>
+
+            @foreach (var provider in providerData)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => provider.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => provider.PhoneNumber)
+                    </td>
+                </tr>
+            }
+        </table>
     </div>
 </div>
