@@ -9,6 +9,15 @@
 <p>
     @Html.ActionLink("Add New Provider", "Create")
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find provider by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>

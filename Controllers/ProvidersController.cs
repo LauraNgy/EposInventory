@@ -16,13 +16,17 @@ namespace EposInventory.Controllers
         private InventoryContext db = new InventoryContext();
 
         // GET: Providers
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, string searchString)
         {
             ViewBag.NameSortParam = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.AddessSortParm = String.IsNullOrEmpty(sortOrder) ? "address_desc" : "";
             ViewBag.PhoneNumberSortParm = String.IsNullOrEmpty(sortOrder) ? "phoneNumber_desc" : "";
             var providers = from provider in db.Providers
                            select provider;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                providers = providers.Where(provider => provider.ProviderName.Contains(searchString));
+            }
             switch (sortOrder)
             {
                 case "name_desc":

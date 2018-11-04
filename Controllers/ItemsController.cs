@@ -16,7 +16,7 @@ namespace EposInventory.Controllers
         private InventoryContext db = new InventoryContext();
 
         // GET: Items
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, string searchString)
         {
             ViewBag.ProviderNameSortParam = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DescriptionSortParam = String.IsNullOrEmpty(sortOrder) ? "description_desc" : "Description";
@@ -28,10 +28,16 @@ namespace EposInventory.Controllers
 
             var items = from item in db.Items
                             select item;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                items = items.Where(item => item.Description.Contains(searchString) || item.Provider.ProviderName.Contains(searchString));
+            }
+
             switch (sortOrder)
             {
                 case "name_desc":
-                    items = items.OrderByDescending(item => item.ProviderID);
+                    items = items.OrderByDescending(item => item.Provider.ProviderName);
                     break;
                 case "Description":
                     items = items.OrderBy(item => item.Description);
@@ -70,7 +76,7 @@ namespace EposInventory.Controllers
                     items = items.OrderByDescending(item => item.WarningLevel);
                     break;
                 default:
-                    items = items.OrderBy(item => item.ProviderID);
+                    items = items.OrderBy(item => item.Provider.ProviderName);
                     break;
             }
             return View(items.ToList());
