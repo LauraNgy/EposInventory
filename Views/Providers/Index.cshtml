@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>All your Providers</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,13 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ProviderName)
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParam })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Address)
+            @Html.ActionLink("Address", "Index", new { sortOrder = ViewBag.AddessSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+            @Html.ActionLink("Phone Number", "Index", new { sortOrder = ViewBag.PhoneNumberSortParm })
         </th>
         <th></th>
     </tr>
