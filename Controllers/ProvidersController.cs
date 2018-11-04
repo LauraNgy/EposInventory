@@ -16,9 +16,35 @@ namespace EposInventory.Controllers
         private InventoryContext db = new InventoryContext();
 
         // GET: Providers
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
-            return View(db.Providers.ToList());
+            ViewBag.NameSortParam = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.AddessSortParm = String.IsNullOrEmpty(sortOrder) ? "address_desc" : "";
+            ViewBag.PhoneNumberSortParm = String.IsNullOrEmpty(sortOrder) ? "phoneNumber_desc" : "";
+            var providers = from provider in db.Providers
+                           select provider;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    providers = providers.OrderByDescending(provider => provider.ProviderName);
+                    break;
+                case "Adress":
+                    providers = providers.OrderBy(provider => provider.Address);
+                    break;
+                case "address_desc":
+                    providers = providers.OrderByDescending(provider => provider.Address);
+                    break;
+                case "PhoneNumber":
+                    providers = providers.OrderBy(provider => provider.PhoneNumber);
+                    break;
+                case "phoneNumber_desc":
+                    providers = providers.OrderByDescending(provider => provider.PhoneNumber);
+                    break;
+                default:
+                    providers = providers.OrderBy(provider => provider.ProviderName);
+                    break;
+            }
+            return View(providers.ToList());
         }
 
         // GET: Providers/Details/5
