@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>All your Items</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,25 +12,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Provider.ProviderName)
+            @Html.ActionLink("Provider Name", "Index", new { sortOrder = ViewBag.ProviderNameSortParam })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.ActionLink("Description", "Index", new { sortOrder = ViewBag.DescriptionSortParam })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PricePerUnit)
+            @Html.ActionLink("Price Per Unit", "Index", new { sortOrder = ViewBag.PricePerUnitSortParam })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SellingPrice)
+            @Html.ActionLink("Selling Price", "Index", new { sortOrder = ViewBag.SellingPriceSortParam })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Markup)
+            @Html.ActionLink("Markup", "Index", new { sortOrder = ViewBag.MarkupSortParam })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Stock)
+            @Html.ActionLink("Quantity in Stock", "Index", new { sortOrder = ViewBag.StockSortParam })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WarningLevel)
+            @Html.ActionLink("Warning Level", "Index", new { sortOrder = ViewBag.WarningLevelSortParam })
         </th>
         <th></th>
     </tr>

@@ -16,9 +16,63 @@ namespace EposInventory.Controllers
         private InventoryContext db = new InventoryContext();
 
         // GET: Items
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
-            var items = db.Items.Include(i => i.Provider);
+            ViewBag.ProviderNameSortParam = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DescriptionSortParam = String.IsNullOrEmpty(sortOrder) ? "description_desc" : "Description";
+            ViewBag.PricePerUnitSortParam = sortOrder == "PricePerUnit" ? "pricePerUnit_desc" : "PricePerUnit";
+            ViewBag.SellingPriceSortParam = sortOrder == "SellingPrice" ? "sellingPrice_desc" : "SellingPrice";
+            ViewBag.MarkupSortParam = sortOrder == "Markup" ? "markup_desc" : "Markup";
+            ViewBag.StockSortParam = sortOrder == "Stock" ? "stock_desc" : "Stock";
+            ViewBag.WarningLevelSortParam = sortOrder == "WarningLevel" ? "warningLevel_desc" : "WarningLevel";
+
+            var items = from item in db.Items
+                            select item;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    items = items.OrderByDescending(item => item.ProviderID);
+                    break;
+                case "Description":
+                    items = items.OrderBy(item => item.Description);
+                    break;
+                case "address_desc":
+                    items = items.OrderByDescending(item => item.Description);
+                    break;
+                case "PricePerUnit":
+                    items = items.OrderBy(item => item.PricePerUnit);
+                    break;
+                case "pricePerUnit_desc":
+                    items = items.OrderByDescending(item => item.PricePerUnit);
+                    break;
+                case "SellingPrice":
+                    items = items.OrderBy(item => item.SellingPrice);
+                    break;
+                case "sellingPrice_desc":
+                    items = items.OrderByDescending(item => item.SellingPrice);
+                    break;
+                case "Markup":
+                    items = items.OrderBy(item => item.Markup);
+                    break;
+                case "markup_desc":
+                    items = items.OrderByDescending(item => item.Markup);
+                    break;
+                case "Stock":
+                    items = items.OrderBy(item => item.Stock);
+                    break;
+                case "stock_desc":
+                    items = items.OrderByDescending(item => item.Stock);
+                    break;
+                case "WarningLevel":
+                    items = items.OrderBy(item => item.WarningLevel);
+                    break;
+                case "warningLevel_desc":
+                    items = items.OrderByDescending(item => item.WarningLevel);
+                    break;
+                default:
+                    items = items.OrderBy(item => item.ProviderID);
+                    break;
+            }
             return View(items.ToList());
         }
 
