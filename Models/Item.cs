@@ -31,6 +31,10 @@ namespace EposInventory.Models
                 var ppu = Math.Round(PricePerUnit, 2);
                 return (int)((1-ppu/selling)*100);
             }
+            set
+            {
+                Markup = 1;
+            }
         }
 
         public virtual Provider Provider { get; set; }

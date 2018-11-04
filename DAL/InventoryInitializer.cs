@@ -23,16 +23,16 @@ namespace EposInventory.DAL
 
             var items = new List<Item>
             {
-                new Item { Description="Every Flavoured Beans", PricePerUnit=2, SellingPrice=3, Stock=100, WarningLevel=10, ProviderID=1},
+                new Item { Description="Every Flavoured Beans", PricePerUnit=2, SellingPrice=3, Stock=10, WarningLevel=10, ProviderID=1},
                 new Item { Description="Bean Flavoured Beans", PricePerUnit=2, SellingPrice=3, Stock=100, WarningLevel=10, ProviderID=1},
                 new Item { Description="Dragon Egg Ice Cream", PricePerUnit=4, SellingPrice=6, Stock=100, WarningLevel=10, ProviderID=2},
                 new Item { Description="Strawberry Ice Cream", PricePerUnit=4, SellingPrice=6, Stock=100, WarningLevel=10, ProviderID=2},
                 new Item { Description="Inspiration Ice Cream", PricePerUnit=4, SellingPrice=6, Stock=100, WarningLevel=10, ProviderID=2},
-                new Item { Description="Chocolate Frogs Ice Cream", PricePerUnit=4, SellingPrice=6, Stock=100, WarningLevel=10, ProviderID=2},
+                new Item { Description="Chocolate Frogs Ice Cream", PricePerUnit=4, SellingPrice=6, Stock=10, WarningLevel=10, ProviderID=2},
                 new Item { Description="Holly", PricePerUnit=50, SellingPrice=150, Stock=100, WarningLevel=10, ProviderID=3},
                 new Item { Description="Beech", PricePerUnit=50, SellingPrice=150, Stock=100, WarningLevel=10, ProviderID=3},
-                new Item { Description="Ash", PricePerUnit=50, SellingPrice=150, Stock=100, WarningLevel=10, ProviderID=3},
-                new Item { Description="Maple", PricePerUnit=50, SellingPrice=150, Stock=100, WarningLevel=10, ProviderID=3},
+                new Item { Description="Ash", PricePerUnit=50, SellingPrice=150, Stock=10, WarningLevel=10, ProviderID=3},
+                new Item { Description="Maple", PricePerUnit=50, SellingPrice=150, Stock=1, WarningLevel=10, ProviderID=3},
                 new Item { Description="Pine", PricePerUnit=50, SellingPrice=150, Stock=100, WarningLevel=10, ProviderID=3},
                 new Item { Description="Walnut", PricePerUnit=50, SellingPrice=150, Stock=100, WarningLevel=10, ProviderID=3},
             };

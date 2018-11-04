@@ -9,10 +9,36 @@
 
 <div class="row">
     <div class="col-md-4">
-        <p>placeholder for selling graph</p>
-    </div>
-    <div class="col-md-4">
-        <p>placeholder for top 5 lowest stocks</p>
+        @model IEnumerable<EposInventory.ViewModels.LowestStockGroup>
+
+        @{
+            ViewBag.Title = "Items with stock below warning level";
+        }
+
+        <h2>Items with stock below warning level</h2>
+
+        <table>
+            <tr>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Number of items in stock
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Stock)
+                    </td>
+                </tr>
+            }
+        </table>
     </div>
     <div class="col-md-4">
         <p>placeholder for who to order from today</p>
