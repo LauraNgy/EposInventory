@@ -1,86 +1,116 @@
 ﻿@model IEnumerable<EposInventory.Models.Item>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "All Items";
 }
 
-<h2>All your Items</h2>
+<div class="row">
+    <div class="col-md-3" style="margin-top:3vh">
+        <div class="list-group">
+            <a href="/Home/Report" class="list-group-item list-group-item-action">
+                Overview
+            </a>
+            <a href="/Items" class="list-group-item list-group-item-action active">Items</a>
+            <a href="/Providers" class="list-group-item list-group-item-action">Providers</a>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col">
+                <h2>All your Items</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>
+                    @Html.ActionLink("Create New Item", "Create")
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                @using (Html.BeginForm())
+                {
+                    <p>
+                        Find item by provider name: @Html.TextBox("SearchString")
+                        <input type="submit" value="Search" />
+                    </p>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                @using (Html.BeginForm())
+                {
+                    <p>
+                        Find item by description: @Html.TextBox("SearchString")
+                        <input type="submit" value="Search" />
+                    </p>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.ActionLink("Provider Name", "Index", new { sortOrder = ViewBag.ProviderNameSortParam })
+                        </th>
+                        <th>
+                            @Html.ActionLink("Description", "Index", new { sortOrder = ViewBag.DescriptionSortParam })
+                        </th>
+                        <th>
+                            @Html.ActionLink("Price Per Unit", "Index", new { sortOrder = ViewBag.PricePerUnitSortParam })
+                        </th>
+                        <th>
+                            @Html.ActionLink("Selling Price", "Index", new { sortOrder = ViewBag.SellingPriceSortParam })
+                        </th>
+                        <th>
+                            @Html.ActionLink("Markup", "Index", new { sortOrder = ViewBag.MarkupSortParam })
+                        </th>
+                        <th>
+                            @Html.ActionLink("Quantity in Stock", "Index", new { sortOrder = ViewBag.StockSortParam })
+                        </th>
+                        <th>
+                            @Html.ActionLink("Warning Level", "Index", new { sortOrder = ViewBag.WarningLevelSortParam })
+                        </th>
+                        <th></th>
+                    </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Provider.ProviderName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PricePerUnit)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SellingPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Markup)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Stock)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.WarningLevel)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                            </td>
+                        </tr>
+                    }
 
-@using (Html.BeginForm())
-{
-    <p>
-        Find item by provider name: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
-}
-
-@using (Html.BeginForm())
-{
-    <p>
-        Find item by description: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
-}
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.ActionLink("Provider Name", "Index", new { sortOrder = ViewBag.ProviderNameSortParam })
-        </th>
-        <th>
-            @Html.ActionLink("Description", "Index", new { sortOrder = ViewBag.DescriptionSortParam })
-        </th>
-        <th>
-            @Html.ActionLink("Price Per Unit", "Index", new { sortOrder = ViewBag.PricePerUnitSortParam })
-        </th>
-        <th>
-            @Html.ActionLink("Selling Price", "Index", new { sortOrder = ViewBag.SellingPriceSortParam })
-        </th>
-        <th>
-            @Html.ActionLink("Markup", "Index", new { sortOrder = ViewBag.MarkupSortParam })
-        </th>
-        <th>
-            @Html.ActionLink("Quantity in Stock", "Index", new { sortOrder = ViewBag.StockSortParam })
-        </th>
-        <th>
-            @Html.ActionLink("Warning Level", "Index", new { sortOrder = ViewBag.WarningLevelSortParam })
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Provider.ProviderName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PricePerUnit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SellingPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Markup)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stock)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WarningLevel)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
-</table>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
