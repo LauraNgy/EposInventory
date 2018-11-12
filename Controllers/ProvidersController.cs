@@ -25,12 +25,12 @@ namespace EposInventory.Controllers
                            select provider;
             if (!String.IsNullOrEmpty(searchString))
             {
-                providers = providers.Where(provider => provider.ProviderName.Contains(searchString));
+                providers = providers.Where(provider => provider.Name.Contains(searchString));
             }
             switch (sortOrder)
             {
                 case "name_desc":
-                    providers = providers.OrderByDescending(provider => provider.ProviderName);
+                    providers = providers.OrderByDescending(provider => provider.Name);
                     break;
                 case "Adress":
                     providers = providers.OrderBy(provider => provider.Address);
@@ -45,7 +45,7 @@ namespace EposInventory.Controllers
                     providers = providers.OrderByDescending(provider => provider.PhoneNumber);
                     break;
                 default:
-                    providers = providers.OrderBy(provider => provider.ProviderName);
+                    providers = providers.OrderBy(provider => provider.Name);
                     break;
             }
             return View(providers.ToList());

@@ -31,13 +31,13 @@ namespace EposInventory.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                items = items.Where(item => item.Description.Contains(searchString) || item.Provider.ProviderName.Contains(searchString));
+                items = items.Where(item => item.Description.Contains(searchString) || item.Provider.Name.Contains(searchString));
             }
 
             switch (sortOrder)
             {
                 case "name_desc":
-                    items = items.OrderByDescending(item => item.Provider.ProviderName);
+                    items = items.OrderByDescending(item => item.Provider.Name);
                     break;
                 case "Description":
                     items = items.OrderBy(item => item.Description);
@@ -76,7 +76,7 @@ namespace EposInventory.Controllers
                     items = items.OrderByDescending(item => item.WarningLevel);
                     break;
                 default:
-                    items = items.OrderBy(item => item.Provider.ProviderName);
+                    items = items.OrderBy(item => item.Provider.Name);
                     break;
             }
             return View(items.ToList());

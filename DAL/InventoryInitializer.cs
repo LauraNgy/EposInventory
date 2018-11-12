@@ -13,9 +13,9 @@ namespace EposInventory.DAL
         {
             var providers = new List<Provider>
             {
-                new Provider { ProviderName="Bertie Bott's", Address="3 Diagon Alley, Leaky Cauldron, London", PhoneNumber="0131 2478632", OrderDays="Monday, Wednesday", DeliveryDays= "Wednesday, Thursday" },
-                new Provider { ProviderName="Florian Fortescue", Address="5 Diagon Alley, Leaky Cauldron, London", PhoneNumber="0131 3567526", OrderDays="Friday, Wednesday", DeliveryDays= "Monday, Thursday" },
-                new Provider { ProviderName="Ollivander's", Address="14 Diagon Alley, Leaky Cauldron, London", PhoneNumber="0131 6555826", OrderDays="Thursday, Saturday", DeliveryDays="Friday, Monday" }
+                new Provider { Name="Bertie Bott's", Address="3 Diagon Alley, Leaky Cauldron, London", PhoneNumber="0131 2478632", OrderDays="Monday, Wednesday", DeliveryDays= "Wednesday, Thursday" },
+                new Provider { Name="Florian Fortescue", Address="5 Diagon Alley, Leaky Cauldron, London", PhoneNumber="0131 3567526", OrderDays="Friday, Wednesday", DeliveryDays= "Monday, Thursday" },
+                new Provider { Name="Ollivander's", Address="14 Diagon Alley, Leaky Cauldron, London", PhoneNumber="0131 6555826", OrderDays="Thursday, Saturday", DeliveryDays="Friday, Monday" }
             };
 
             providers.ForEach(provider => context.Providers.Add(provider));

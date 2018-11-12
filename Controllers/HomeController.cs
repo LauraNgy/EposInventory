@@ -31,7 +31,7 @@ namespace EposInventory.Controllers
                                                     select new LowestStockGroup()
                                                     {
                                                         Description = item.Description,
-                                                        ProviderName = item.Provider.ProviderName,
+                                                        ProviderName = item.Provider.Name,
                                                         ProviderPhone = item.Provider.PhoneNumber,
                                                         Stock = item.Stock
                                                     };
