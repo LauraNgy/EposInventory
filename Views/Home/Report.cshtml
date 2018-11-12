@@ -12,15 +12,11 @@
                    where (provider.OrderDays.Contains(DateTime.Today.DayOfWeek.ToString()))
                    select new OrderGroup()
                    {
-                       Name = provider.ProviderName,
+                       Name = provider.Name,
                        PhoneNumber = provider.PhoneNumber
                    };
 }
 
-<div class="jumbotron">
-    <h1>Inventory Manager</h1>
-    <p>Keep your items in stock, every day!</p>
-</div>
 
 <div class="row" >
     <div class="col-md-3" style="margin-top:3vh">
