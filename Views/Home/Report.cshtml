@@ -1,0 +1,96 @@
+﻿@using EposInventory.DAL;
+@using EposInventory.ViewModels;
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@{
+    InventoryContext db = new InventoryContext();
+    IQueryable<OrderGroup>
+    providerData = from provider in db.Providers
+                   where (provider.OrderDays.Contains(DateTime.Today.DayOfWeek.ToString()))
+                   select new OrderGroup()
+                   {
+                       Name = provider.ProviderName,
+                       PhoneNumber = provider.PhoneNumber
+                   };
+}
+
+<div class="jumbotron">
+    <h1>Inventory Manager</h1>
+    <p>Keep your items in stock, every day!</p>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @model IEnumerable<EposInventory.ViewModels.LowestStockGroup>
+
+        @*@{
+            ViewBag.Title = "Items with stock below warning level";
+        }*@
+
+        <h2>Items with stock below warning level</h2>
+
+        <table>
+            <tr>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Number of items in stock
+                </th>
+                <th>
+                    Provider Name
+                </th>
+                <th>
+                    Provider Phone Number
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Stock)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProviderName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProviderPhone)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="col-md-12">
+        <h2>Providers you can order from today</h2>
+
+        <table>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Phone Number
+                </th>
+            </tr>
+
+            @foreach (var provider in providerData)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => provider.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => provider.PhoneNumber)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

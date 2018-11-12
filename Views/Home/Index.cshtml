@@ -1,20 +1,5 @@
-﻿@using EposInventory.DAL;
-@using EposInventory.ViewModels;
-
-@{
-    ViewBag.Title = "Home Page";
-}
-
-@{
-    InventoryContext db = new InventoryContext();
-    IQueryable<OrderGroup>
-    providerData = from provider in db.Providers
-                   where (provider.OrderDays.Contains(DateTime.Today.DayOfWeek.ToString()))
-                   select new OrderGroup()
-                   {
-                       Name = provider.ProviderName,
-                       PhoneNumber = provider.PhoneNumber
-                   };
+﻿@{
+    ViewBag.Title = "About EPoS";
 }
 
 <div class="jumbotron">
@@ -24,73 +9,15 @@
 
 <div class="row">
     <div class="col-md-12">
-        @model IEnumerable<EposInventory.ViewModels.LowestStockGroup>
-
-        @*@{
-            ViewBag.Title = "Items with stock below warning level";
-        }*@
-
-        <h2>Items with stock below warning level</h2>
-
-        <table>
-            <tr>
-                <th>
-                    Description
-                </th>
-                <th>
-                    Number of items in stock
-                </th>
-                <th>
-                    Provider Name
-                </th>
-                <th>
-                    Provider Phone Number
-                </th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Stock)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProviderName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProviderPhone)
-                    </td>
-                </tr>
-            }
-        </table>
+        <h2>Getting started</h2>
+        <p>
+            This application is helpful for any shop owners who need a tool to keep on top of their inventory.
+        </p>
+        <p>You can click on the links at the top of the page to navigate between your @Html.ActionLink("Items", "Index", "Items") and @Html.ActionLink("Providers", "Index", "Providers") .</p>
     </div>
     <div class="col-md-12">
-        <h2>Providers you can order from today</h2>
-
-        <table>
-            <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Phone Number
-                </th>
-            </tr>
-
-            @foreach (var provider in providerData)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => provider.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => provider.PhoneNumber)
-                    </td>
-                </tr>
-            }
-        </table>
+        <h2>Not just a spreadsheet</h2>
+        <p>It gives you the ultimate power to make informed decisions.</p>
+        <p>Intuitively built to give you reports and warnings every time you're running low on stock.</p>
     </div>
 </div>
