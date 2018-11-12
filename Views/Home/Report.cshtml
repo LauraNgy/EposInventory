@@ -22,75 +22,86 @@
     <p>Keep your items in stock, every day!</p>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        @model IEnumerable<EposInventory.ViewModels.LowestStockGroup>
-
-        @*@{
-            ViewBag.Title = "Items with stock below warning level";
-        }*@
-
-        <h2>Items with stock below warning level</h2>
-
-        <table>
-            <tr>
-                <th>
-                    Description
-                </th>
-                <th>
-                    Number of items in stock
-                </th>
-                <th>
-                    Provider Name
-                </th>
-                <th>
-                    Provider Phone Number
-                </th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Stock)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProviderName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProviderPhone)
-                    </td>
-                </tr>
-            }
-        </table>
+<div class="row" >
+    <div class="col-md-3" style="margin-top:3vh">
+        <div class="list-group">
+            <a href="/Home/Report" class="list-group-item list-group-item-action active">
+                Overview
+            </a>
+            <a href="/Items" class="list-group-item list-group-item-action" >Items</a>
+            <a href="/Providers" class="list-group-item list-group-item-action" >Providers</a>
+        </div>
     </div>
-    <div class="col-md-12">
-        <h2>Providers you can order from today</h2>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col">
+                @model IEnumerable<EposInventory.ViewModels.LowestStockGroup>
 
-        <table>
-            <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Phone Number
-                </th>
-            </tr>
+                <h2>Items with stock below warning level</h2>
 
-            @foreach (var provider in providerData)
+                <table>
+                    <tr>
+                        <th>
+                            Description
+                        </th>
+                        <th>
+                            Number of items in stock
+                        </th>
+                        <th>
+                            Provider Name
+                        </th>
+                        <th>
+                            Provider Phone Number
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => provider.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => provider.PhoneNumber)
-                    </td>
-                </tr>
-            }
-        </table>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Stock)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProviderName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProviderPhone)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+       <div class="row">
+            <div class="col">
+                <h2>Providers you can order from today</h2>
+
+                <table>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Phone Number
+                        </th>
+                    </tr>
+
+                    @foreach (var provider in providerData)
+            {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => provider.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => provider.PhoneNumber)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+       </div>
     </div>
 </div>
