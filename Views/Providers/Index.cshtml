@@ -1,69 +1,97 @@
 ﻿@model IEnumerable<EposInventory.Models.Provider>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "All Providers";
 }
 
-<h2>All your Providers</h2>
+<div class="row">
+    <div class="col-md-3" style="margin-top:3vh">
+        <div class="list-group">
+            <a href="/Home/Report" class="list-group-item list-group-item-action">
+                Overview
+            </a>
+            <a href="/Items" class="list-group-item list-group-item-action">Items</a>
+            <a href="/Providers" class="list-group-item list-group-item-action active">Providers</a>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col">
+                <h2>All your Providers</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>
+                    @Html.ActionLink("Add New Provider", "Create")
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                @using (Html.BeginForm())
+                {
+                    <p>
+                        Find provider by name: @Html.TextBox("SearchString")
+                        <input type="submit" value="Search" />
+                    </p>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParam })
+                        </th>
+                        <th>
+                            @Html.ActionLink("Address", "Index", new { sortOrder = ViewBag.AddessSortParm })
+                        </th>
+                        <th>
+                            @Html.ActionLink("Phone Number", "Index", new { sortOrder = ViewBag.PhoneNumberSortParm })
+                        </th>
 
-<p>
-    @Html.ActionLink("Add New Provider", "Create")
-</p>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OrderDays)
+                        </th>
 
-@using (Html.BeginForm())
-{
-    <p>
-        Find provider by name: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
-}
+                        <th>
+                            @Html.DisplayNameFor(model => model.DeliveryDays)
+                        </th>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParam })
-        </th>
-        <th>
-            @Html.ActionLink("Address", "Index", new { sortOrder = ViewBag.AddessSortParm })
-        </th>
-        <th>
-            @Html.ActionLink("Phone Number", "Index", new { sortOrder = ViewBag.PhoneNumberSortParm })
-        </th>
+                        <th></th>
+                    </tr>
 
-        <th>
-            @Html.DisplayNameFor(model => model.OrderDays)
-        </th>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrderDays)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DeliveryDays)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                            </td>
+                        </tr>
+                    }
 
-        <th>
-            @Html.DisplayNameFor(model => model.DeliveryDays)
-        </th>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderDays)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeliveryDays)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
-</table>
