@@ -23,12 +23,12 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         @model IEnumerable<EposInventory.ViewModels.LowestStockGroup>
 
-        @{
+        @*@{
             ViewBag.Title = "Items with stock below warning level";
-        }
+        }*@
 
         <h2>Items with stock below warning level</h2>
 
@@ -67,7 +67,7 @@
             }
         </table>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-12">
         <h2>Providers you can order from today</h2>
 
         <table>
