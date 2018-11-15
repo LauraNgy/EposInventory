@@ -20,6 +20,7 @@ namespace EposInventory.Controllers
         {
             ViewBag.ProviderNameSortParam = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DescriptionSortParam = String.IsNullOrEmpty(sortOrder) ? "description_desc" : "Description";
+            ViewBag.CategorySortParam = String.IsNullOrEmpty(sortOrder) ? "category_desc" : "Category";
             ViewBag.PricePerUnitSortParam = sortOrder == "PricePerUnit" ? "pricePerUnit_desc" : "PricePerUnit";
             ViewBag.SellingPriceSortParam = sortOrder == "SellingPrice" ? "sellingPrice_desc" : "SellingPrice";
             ViewBag.MarkupSortParam = sortOrder == "Markup" ? "markup_desc" : "Markup";
@@ -42,8 +43,14 @@ namespace EposInventory.Controllers
                 case "Description":
                     items = items.OrderBy(item => item.Description);
                     break;
-                case "address_desc":
+                case "description_desc":
                     items = items.OrderByDescending(item => item.Description);
+                    break;
+                case "Category":
+                    items = items.OrderBy(item => item.Category);
+                    break;
+                case "category_desc":
+                    items = items.OrderByDescending(item => item.Category);
                     break;
                 case "PricePerUnit":
                     items = items.OrderBy(item => item.PricePerUnit);
@@ -82,7 +89,7 @@ namespace EposInventory.Controllers
             return View(items.ToList());
         }
 
-        // GET: Items/Details/5
+        // GET: Items/Details/id
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -105,11 +112,10 @@ namespace EposInventory.Controllers
         }
 
         // POST: Items/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ProviderID,Description,PricePerUnit,SellingPrice,Markup,Stock,WarningLevel")] Item item)
+        public ActionResult Create([Bind(Include = "ID,ProviderID,Description,Category,PricePerUnit,SellingPrice,Markup,Stock,WarningLevel")] Item item)
         {
             if (ModelState.IsValid)
             {
@@ -122,7 +128,7 @@ namespace EposInventory.Controllers
             return View(item);
         }
 
-        // GET: Items/Edit/5
+        // GET: Items/Edit/id
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -138,12 +144,11 @@ namespace EposInventory.Controllers
             return View(item);
         }
 
-        // POST: Items/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Items/Edit/id
+        // To protect from overposting attacks, please enable the specific properties you want to bind to.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ProviderID,Description,PricePerUnit,SellingPrice,Markup,Stock,WarningLevel")] Item item)
+        public ActionResult Edit([Bind(Include = "ID,ProviderID,Description,Category,PricePerUnit,SellingPrice,Markup,Stock,WarningLevel")] Item item)
         {
             if (ModelState.IsValid)
             {
@@ -155,7 +160,7 @@ namespace EposInventory.Controllers
             return View(item);
         }
 
-        // GET: Items/Delete/5
+        // GET: Items/Delete/id
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -170,7 +175,7 @@ namespace EposInventory.Controllers
             return View(item);
         }
 
-        // POST: Items/Delete/5
+        // POST: Items/Delete/id
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
