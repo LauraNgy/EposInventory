@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using EposInventory.DAL;
 using EposInventory.ViewModels;
+using System.Web.UI;
 
 namespace EposInventory.Controllers
 {
@@ -39,9 +40,20 @@ namespace EposInventory.Controllers
             return View(itemData.ToList());
         }
 
+        [OutputCache(Location = OutputCacheLocation.None)]
         public ActionResult PoS()
         {
-            return View();
+            IQueryable<POSGroup> itemData = from item in db.Items
+                                                    orderby item.Category ascending
+                                                    select new POSGroup()
+                                                    {
+                                                        Description = item.Description,
+                                                        Category = item.Category,
+                                                        SellingPrice = item.SellingPrice,
+                                                        Stock = item.Stock
+                                                    };
+
+            return Json(itemData, JsonRequestBehavior.AllowGet);
         }
     }
 }

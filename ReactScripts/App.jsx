@@ -15,4 +15,6 @@ class CardList extends React.Component {
     }
 }
 
-ReactDOM.render(<App />, document.getElementById('content'));
+ReactDOM.render(
+    <App url="/item_list"/>,
+    document.getElementById('content'));

@@ -14,6 +14,12 @@ namespace EposInventory
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "PoS",
+                url: "item_list",
+                defaults: new { controller = "Home", action = "PoS" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

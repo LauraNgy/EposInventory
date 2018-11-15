@@ -222,6 +222,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\LowestStockGroup.cs" />
     <Compile Include="ViewModels\OrderGroup.cs" />
+    <Compile Include="ViewModels\POSGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
