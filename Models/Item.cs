@@ -13,6 +13,7 @@ namespace EposInventory.Models
         public int ID { get; set; }
         public int ProviderID { get; set; }
         public string Description { get; set; }
+        public string Category { get; set; }
         [Display(Name = "Price Per Unit")]
         public float PricePerUnit { get; set; }
         [Display(Name = "Selling Price")]
